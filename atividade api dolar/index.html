@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Recarrega a página inteira a cada 10 segundos, conforme o requisito. -->
+  <meta http-equiv="refresh" content="10">
+  <meta name="description" content="Acompanhe a cotação do dólar comercial em reais, a máxima, a mínima e a última atualização informada pela AwesomeAPI.">
+  <meta name="theme-color" content="#163f34">
+  <title>Câmbio | Cotação do dólar comercial</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- defer executa o JavaScript somente depois que o HTML foi interpretado. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="marca" aria-label="Câmbio, painel de cotações">
+      <span class="marca-icone" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>câmbio<span class="marca-ponto">.</span></span>
+    </div>
+    <span class="cabecalho-legenda">Seu olhar sobre o mercado</span>
+    <a class="link-fonte" href="https://docs.awesomeapi.com.br/api-de-moedas" target="_blank" rel="noopener noreferrer">
+      Fonte: AwesomeAPI <span aria-hidden="true">↗</span>
+    </a>
+  </header>
+
+  <main class="conteudo">
+    <section aria-labelledby="titulo">
+      <div class="introducao">
+        <div>
+          <p class="sobretitulo"><span aria-hidden="true"></span> MERCADO DE CÂMBIO</p>
+          <h1 id="titulo">Dólar comercial<span class="titulo-ponto">.</span></h1>
+          <p class="descricao">O valor do dólar em reais, em um só lugar.</p>
+        </div>
+        <div class="par-moedas" aria-label="Dólar americano para real brasileiro">
+          <span>USD</span><span class="par-seta" aria-hidden="true">/</span><span>BRL</span>
+        </div>
+      </div>
+
+      <noscript><p class="erro">Ative o JavaScript no navegador para consultar a cotação.</p></noscript>
+      <!-- Erros são anunciados por leitores de tela e ficam visíveis no painel. -->
+      <div id="mensagem-erro" class="erro" role="alert" hidden></div>
+
+      <div id="painel" class="painel" aria-busy="true">
+        <article class="cartao-principal" aria-labelledby="rotulo-cotacao">
+          <div class="principal-topo">
+            <span class="etiqueta">COTAÇÃO ATUAL</span>
+            <span class="moeda-simbolo" aria-hidden="true">$</span>
+          </div>
+          <div class="principal-valor">
+            <h2 id="rotulo-cotacao">1 dólar americano vale</h2>
+            <p id="cotacao" class="valor-cotacao">—</p>
+            <p class="cotacao-legenda">em reais brasileiros</p>
+          </div>
+          <div class="principal-rodape">
+            <span>Cotação de compra</span>
+            <span class="selo-comercial">DÓLAR COMERCIAL</span>
+          </div>
+        </article>
+
+        <div class="extremos">
+          <article class="cartao-metrica" aria-labelledby="rotulo-maxima">
+            <div class="metrica-topo">
+              <h2 id="rotulo-maxima">Máxima do dia</h2>
+              <span class="metrica-icone icone-maxima" aria-hidden="true">↗</span>
+            </div>
+            <p id="maxima" class="valor-metrica">—</p>
+            <p class="metrica-legenda">Maior valor registrado no dia</p>
+          </article>
+          <article class="cartao-metrica" aria-labelledby="rotulo-minima">
+            <div class="metrica-topo">
+              <h2 id="rotulo-minima">Mínima do dia</h2>
+              <span class="metrica-icone icone-minima" aria-hidden="true">↘</span>
+            </div>
+            <p id="minima" class="valor-metrica">—</p>
+            <p class="metrica-legenda">Menor valor registrado no dia</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="barra-atualizacao">
+        <div class="atualizacao-dados">
+          <span class="relogio" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <div>
+            <h2>Última atualização da API</h2>
+            <p><time id="ultima-atualizacao">Aguardando dados…</time></p>
+            <span class="fuso">Horário de Brasília</span>
+          </div>
+        </div>
+        <div class="atualizacao-acoes">
+          <span id="status" class="status" data-estado="carregando" role="status">Consultando API…</span>
+          <button id="botao-atualizar" class="botao-atualizar" type="button" disabled>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 7a7 7 0 0 1 11.5-1L20 9M4 15l2.4 3A7 7 0 0 0 17.9 17"/></svg>
+            <span id="texto-botao">Consultando…</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="nota-atualizacao">
+        <span class="nota-icone" aria-hidden="true">↻</span>
+        <p>Atualização automática a cada <strong>10 segundos.</strong> A disponibilidade de novos dados depende da fonte.</p>
+        <span class="selo-automatico">AUTOMÁTICO</span>
+      </div>
+    </section>
+
+    <aside class="sobre-cotacao" aria-label="Sobre a cotação">
+      <p class="sobre-titulo">Um número, mais contexto.</p>
+      <p>O dólar comercial é uma referência para operações de comércio exterior. Aqui, você acompanha o valor de compra de <strong>US$ 1,00</strong> em reais informado pela AwesomeAPI.</p>
+    </aside>
+  </main>
+
+  <footer class="rodape">
+    <span>Câmbio <span aria-hidden="true">/</span> Dólar americano → Real brasileiro</span>
+    <span>Dados fornecidos pela <a href="https://docs.awesomeapi.com.br/api-de-moedas" target="_blank" rel="noopener noreferrer">AwesomeAPI ↗</a></span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/* Base: cores, tipografia e dimensões compartilhadas. Sem dependências externas. */
+:root {
+  color-scheme: light;
+  --fundo: #f6f7f3;
+  --texto: #1b332c;
+  --secundario: #66716b;
+  --borda: #e1e6de;
+  --verde: #24684b;
+  --verde-escuro: #163f34;
+  --lima: #d8ee9c;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-underline-offset: 4px; }
+a:hover { color: var(--verde); }
+button:focus-visible, a:focus-visible { outline: 3px solid #79a841; outline-offset: 5px; }
+button { font: inherit; }
+p, h1, h2 { margin: 0; }
+svg { display: block; width: 24px; height: 24px; }
+
+.cabecalho, .conteudo, .rodape { width: min(1100px, calc(100% - 80px)); margin-inline: auto; }
+.cabecalho { min-height: 102px; display: flex; align-items: center; gap: 32px; border-bottom: 1px solid var(--borda); }
+.marca { display: inline-flex; align-items: center; gap: 10px; font-size: 29px; font-weight: 700; letter-spacing: -1.4px; }
+.marca-ponto, .titulo-ponto { color: var(--verde); }
+.marca-icone { width: 34px; height: 34px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; padding: 9px; border-radius: 9px; background: var(--verde-escuro); }
+.marca-icone i { width: 4px; height: 8px; background: var(--lima); border-radius: 1px; }
+.marca-icone i:nth-child(2) { height: 12px; }
+.marca-icone i:nth-child(3) { height: 17px; }
+.cabecalho-legenda { color: var(--secundario); font-size: 12px; border-left: 1px solid var(--borda); padding-left: 30px; }
+.link-fonte { margin-left: auto; font-size: 12px; text-decoration: none; }
+.link-fonte span { margin-left: 8px; font-size: 17px; }
+
+/* Cabeçalho da página e identificação do par de moedas. */
+.conteudo { padding-top: 48px; }
+.introducao { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 30px; }
+.sobretitulo { display: flex; align-items: center; gap: 8px; color: var(--verde); font-size: 10px; font-weight: 700; letter-spacing: 1.8px; margin-bottom: 10px; }
+.sobretitulo span { width: 6px; height: 6px; background: var(--verde); border-radius: 50%; }
+h1 { font-size: clamp(32px, 4vw, 44px); font-weight: 600; letter-spacing: -1.8px; line-height: 1.2; }
+.descricao { color: var(--secundario); font-size: 14px; margin-top: 10px; line-height: 1.6; }
+.par-moedas { display: flex; align-items: center; gap: 16px; padding: 12px 19px; border: 1px solid #d9e0d5; border-radius: 8px; font-size: 13px; font-weight: 600; letter-spacing: 1px; background: #eef1e9; }
+.par-seta { color: #8c968c; }
+
+/* O cartão principal ocupa a coluna maior. Máxima e mínima ficam à direita. */
+.painel { display: grid; grid-template-columns: 1.65fr 1fr; gap: 20px; }
+.cartao-principal { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; padding: 26px 34px; background: var(--verde-escuro); color: white; border: 1px solid #194a3c; border-radius: 16px; box-shadow: 0 8px 24px #163f3410; }
+.cartao-principal::before { content: ""; position: absolute; width: 350px; height: 350px; right: -150px; top: -125px; border: 1px solid #ffffff09; border-radius: 50%; box-shadow: 0 0 0 35px #ffffff03, 0 0 0 70px #ffffff02; pointer-events: none; }
+.principal-topo, .principal-rodape { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.etiqueta { color: #cbdfd5; font-size: 10px; font-weight: 600; letter-spacing: 1.9px; }
+.moeda-simbolo { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #527569; border-radius: 50%; color: var(--lima); font-size: 19px; }
+.principal-valor { position: relative; padding: 24px 0 28px; }
+.principal-valor h2 { font-size: 14px; font-weight: 400; color: #d5e3dc; }
+.valor-cotacao { margin: 5px 0; color: var(--lima); font-size: clamp(44px, 6.5vw, 78px); font-weight: 600; letter-spacing: -3px; line-height: 1.15; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.cotacao-legenda { font-size: 12px; color: #b9cec3; }
+.principal-rodape { border-top: 1px solid #ffffff20; padding-top: 20px; font-size: 11px; color: #c4d8cd; }
+.selo-comercial { font-size: 8px; letter-spacing: 1.1px; border: 1px solid #ffffff24; padding: 6px 8px; border-radius: 4px; white-space: nowrap; }
+.extremos { display: grid; gap: 16px; }
+.cartao-metrica { padding: 21px 26px; border: 1px solid var(--borda); border-radius: 14px; background: #fff; box-shadow: 0 3px 10px #1b332c03; }
+.metrica-topo { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.metrica-topo h2 { font-size: 13px; font-weight: 500; }
+.metrica-icone { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: 21px; }
+.icone-maxima { background: #eef5e7; color: #487637; }
+.icone-minima { background: #f8efe5; color: #9a672f; }
+.valor-metrica { margin: 3px 0 5px; font-size: 32px; font-weight: 600; letter-spacing: -.8px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.metrica-legenda { color: var(--secundario); font-size: 11px; line-height: 1.5; }
+
+/* Estado da consulta, horário retornado pela API e atualização manual. */
+.barra-atualizacao { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 20px; padding: 22px 26px; border: 1px solid var(--borda); border-radius: 12px; background: white; }
+.atualizacao-dados { display: flex; align-items: center; gap: 16px; }
+.relogio { display: grid; place-items: center; width: 42px; height: 42px; flex-shrink: 0; border: 1px solid var(--borda); border-radius: 10px; color: #6e7f70; }
+.atualizacao-dados h2 { color: var(--secundario); font-size: 11px; font-weight: 400; margin-bottom: 5px; }
+.atualizacao-dados p { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fuso { display: block; margin-top: 4px; font-size: 10px; color: var(--secundario); }
+.atualizacao-acoes { display: flex; align-items: center; gap: 22px; }
+.status { display: inline-flex; align-items: center; gap: 7px; color: var(--verde); font-size: 11px; }
+.status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.status[data-estado="carregando"] { color: var(--secundario); }
+.status[data-estado="erro"] { color: #a03d2d; }
+.botao-atualizar { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 42px; padding: 10px 14px; border: 1px solid #d8e1d6; border-radius: 7px; background: #f7f9f3; color: var(--texto); font-size: 11px; font-weight: 600; cursor: pointer; transition: background .15s; }
+.botao-atualizar svg { width: 15px; height: 15px; }
+.botao-atualizar:hover:not(:disabled) { background: #e9f0df; }
+.botao-atualizar:disabled { cursor: wait; opacity: .65; }
+.botao-atualizar:disabled svg { animation: girar 1.4s linear infinite; }
+.erro { margin-bottom: 20px; padding: 16px 20px; border: 1px solid #e9c6be; border-radius: 10px; background: #fff2ed; color: #873624; font-size: 14px; line-height: 1.6; }
+.nota-atualizacao { display: flex; align-items: center; gap: 11px; padding: 17px 4px; color: var(--secundario); }
+.nota-icone { font-size: 19px; color: #68814d; }
+.nota-atualizacao p { font-size: 11px; line-height: 1.7; }
+.nota-atualizacao strong { font-weight: 600; color: #46533d; }
+.selo-automatico { margin-left: auto; flex-shrink: 0; color: #66745a; font-size: 8px; letter-spacing: 1px; }
+.sobre-cotacao { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; padding: 27px 0; margin-top: 22px; border-top: 1px solid var(--borda); }
+.sobre-titulo { font-size: 14px; font-weight: 500; }
+.sobre-cotacao > p:last-child { max-width: 625px; font-size: 12px; line-height: 1.8; color: var(--secundario); }
+.sobre-cotacao strong { color: #47594e; font-weight: 600; }
+.rodape { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--borda); padding: 23px 0 30px; font-size: 10px; line-height: 1.7; color: var(--secundario); }
+.rodape > span:first-child > span { margin-inline: 10px; color: #a8b0a4; }
+.rodape a { text-decoration: none; color: var(--texto); }
+@keyframes girar { to { transform: rotate(360deg); } }
+
+/* Em telas menores, os cartões se reorganizam sem rolagem horizontal. */
+@media (max-width: 800px) {
+  .cabecalho, .conteudo, .rodape { width: calc(100% - 40px); }
+  .cabecalho-legenda { display: none; }
+  .painel { grid-template-columns: 1.35fr 1fr; gap: 14px; }
+  .cartao-principal { padding: 24px; }
+  .principal-rodape { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .cartao-metrica { padding: 20px; }
+  .atualizacao-acoes { gap: 12px; flex-direction: column; align-items: flex-end; }
+}
+
+@media (max-width: 580px) {
+  .cabecalho { min-height: 78px; gap: 16px; }
+  .marca { font-size: 26px; }
+  .link-fonte { font-size: 10px; }
+  .link-fonte span { margin-left: 2px; }
+  .conteudo { padding-top: 32px; }
+  .introducao { flex-wrap: wrap; gap: 18px; margin-bottom: 22px; }
+  .par-moedas { padding: 8px 12px; font-size: 11px; }
+  .descricao { font-size: 13px; }
+  .painel { grid-template-columns: 1fr; }
+  .cartao-principal { min-height: 300px; }
+  .valor-cotacao { font-size: 64px; }
+  .principal-rodape { flex-direction: row; align-items: center; }
+  .extremos { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cartao-metrica { padding: 17px 14px; }
+  .metrica-topo { gap: 6px; }
+  .metrica-topo h2 { font-size: 11px; }
+  .metrica-icone { width: 24px; height: 24px; flex-shrink: 0; font-size: 18px; }
+  .valor-metrica { margin-top: 12px; font-size: 26px; }
+  .metrica-legenda { font-size: 10px; }
+  .barra-atualizacao { align-items: stretch; flex-direction: column; gap: 20px; padding: 20px; margin-top: 14px; }
+  .atualizacao-acoes { flex-direction: row; justify-content: space-between; align-items: center; }
+  .nota-atualizacao { align-items: flex-start; padding-inline: 0; }
+  .selo-automatico { display: none; }
+  .sobre-cotacao { grid-template-columns: 1fr; gap: 10px; margin-top: 10px; padding: 24px 0; }
+  .rodape { flex-direction: column; gap: 8px; }
+}
+
+/* Respeita a preferência do usuário por menos movimento. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
