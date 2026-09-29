@@ -1,0 +1,7 @@
+# Dependências instaladas pelo npm.
+node_modules/
+
+# Configurações locais e registros de erro.
+.env
+.env.*
+npm-debug.log*

@@ -1,0 +1,16 @@
+{
+  "name": "cotacao-dolar",
+  "version": "1.0.0",
+  "description": "Cotação do dólar em reais com HTML, CSS, JavaScript e Express.",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
